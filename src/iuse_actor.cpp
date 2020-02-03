@@ -162,8 +162,8 @@ int iuse_transform::use( player &p, item &it, bool t, const tripoint &pos ) cons
         return 0;
     }
 
-    if( it.has_flag("BOMB") && !p.is_wielding(it)){
-      if( !query_yn( _("You are not wielding the bomb, it may take extra time to throw or drop it. Arm it anyway?"))){
+    if( target.has_object("explosion") && !p.is_wielding(it)){
+      if( !query_yn( _("You are not wielding the %s, it may take extra time to throw or drop it. Arm it anyway?"), target.tname())){
         return 0;
       }
     }
