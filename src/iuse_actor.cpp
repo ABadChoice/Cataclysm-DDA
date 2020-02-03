@@ -162,6 +162,12 @@ int iuse_transform::use( player &p, item &it, bool t, const tripoint &pos ) cons
         return 0;
     }
 
+    if( &it.has_flag("BOMB") && !p->is_wielding(*it)){
+      if( !p->query_yn( _("You are not wielding the bomb, it may take extra time to throw or drop it. Arm it anyway?"))){
+        return 0;
+      }
+    }
+
     if( need_fire && possess ) {
         if( !p.use_charges_if_avail( "fire", need_fire ) ) {
             p.add_msg_if_player( m_info, need_fire_msg, it.tname() );
